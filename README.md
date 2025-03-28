@@ -4,9 +4,7 @@
 
 # SALT: A Flexible Semi-Automatic Labeling Tool for General LiDAR Point Clouds with Cross-Scene Adaptability and 4D Consistency
 
-
 This repo is the official project repository of SALT.
-
 
 <div align="left">
 
@@ -17,11 +15,12 @@ SALT demonstrates exceptional zero-shot adaptability across various sensors, sce
 ![image](fig/overview.jpg)
 
 ## 2. Environment
-On Ubuntu 18.04, the dependencies can be installed from the package manager:
+The dependencies can be installed from the package manager (tested On Ubuntu 18.04):
 ```
-sudo apt-get install g++ build-essential libeigen3-dev python3-pip python3-dev cmake git  libboost-all-dev qtbase5-dev libglew-dev -y
+sudo apt-get install g++ build-essential libeigen3-dev python3-pip \
+ python3-dev cmake git libboost-all-dev qtbase5-dev libglew-dev libyaml-cpp-dev -y 
 ```
-Then, ensure [Anaconda](https://www.anaconda.com/download/) is installed on your system. Then, create and activate a virtual environment named `SALT`.
+Then, ensure [Anaconda](https://www.anaconda.com/download/) is installed in your system. Create and activate a virtual environment named `SALT`.
 
 ```
 conda create -n SALT python==3.10
@@ -49,7 +48,7 @@ Install `SALT` dependencies and download `Data Alignment Model`  checkpoints.
 pip install -r requirements.txt
 cd ..
 ```
-Meanwhile, please manually download the trained model from [Data_Alignment_Model](https://drive.google.com/file/d/1pnnW2JQsc8syDMyQiXGdBtSIjWlzfVjD/view?usp=sharing) and place it in the `~/SALT/SALT/` directory.
+Meanwhile, please manually download the [Data_Alignment_Model](https://drive.google.com/file/d/1pnnW2JQsc8syDMyQiXGdBtSIjWlzfVjD/view?usp=sharing) and place it in the `~/SALT/SALT/` directory.
 
 The project folder structure should look like this:
 <pre>
@@ -80,7 +79,7 @@ After loading the raw point cloud sequence data, the user
   results are automatically saved for subsequent semantic and instance labeling. The pre-segmentation results are also 
   automatically displayed in the user interface with different colors.
 
-![image](fig/example1.GIF)
+<img src="fig/example1.GIF" width="600" />
   
 ### 3.2 Manual Assignment and Refinement for Semantic Annotation
 The user is free to define as many semantic classes appear in the
@@ -94,7 +93,7 @@ on their needs. By simply clicking on a predefined color button
  Inherited from LABELER, SALT supports the option to hide other classes, making manual annotation adjustments 
  more convenient.
 
-![image](fig/example2.GIF)
+<img src="fig/example2.GIF" width="600" />
  
 ### 3.3 Auto Ordering and Manual Refinement for Instance Annotation
 Once users are satisfied with the semantic labeling results, they can simply click the "Auto Instance" button
