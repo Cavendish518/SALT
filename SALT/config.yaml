@@ -1,0 +1,53 @@
+#conda sh path
+conda_sh_path: /yourusername/anaconda3/etc/profile.d/conda.sh
+# Data and cache paths
+data_dir: "/your/path/to/data"  # Path to the data directory
+cache_dir: "/your/path/to/cache"  # Path to the cache directory
+
+# Runtime configuration
+resume: True  # Resume from the last inference frame
+seg_ground: True  # Whether to separate ground or not
+ground_num: 20  # number of semantic segments used for ground
+indoor: False  # Whether to separate the ceiling or not
+camera_model: False  # Whether a camera is available
+real_cam_num: 2  # Number of real cameras
+
+# Multi-frame merging parameters
+sn: 7  # Number of frames to merge, determined by LiDAR resolution and platform speed
+
+# Voxelization parameters
+RT_batch_size: 4
+voxel_size: [0.2, 0.2, 0.2]  # Voxel size, determined by LiDAR resolution
+
+# Computing device configuration
+device: "cuda:0"  # Computing device (e.g., GPU)
+multiprocess_num: 16  # Number of parallel processes
+pseduo_camera_num: 8  # Number of pseudo cameras for augmentation
+GPU_num: 1  # Number of GPUs to use
+GPU_prework_num: 2  # Number of GPU pre-processing tasks
+
+# Clustering parameters
+eps: [0.6, 1.2]  # DBSCAN clustering epsilon (radius)
+min_samples: [30, 50]  # Minimum number of points required for DBSCAN clusters
+
+# Voxel expansion parameters
+voxel_grow: 4  # Growth factor for voxel expansion
+z_grow: 3.5  # Growth factor for z-axis expansion
+
+# pseudo camera parameters
+K: [[421.466, 0, 320],  # fx, 0, cx
+    [0, 421.466, 240],  # 0, fy, cy
+    [0, 0, 1]]  # 0, 0, 1 (intrinsics)
+rot: 0  # Pitch angle (α)
+tra: 2  # Upward axis
+start_rot: 0  # Initial rotation between baselink and lidarlink
+camera_angle_ud: 2.0  # Initial pitch angle (α)
+camera_angle_rl: 0  # determined by baselink
+camera_position: [[0.0, 0.0, 18]]  # Initial translation vector (t)
+width: 640  # Image width in pixels
+height: 480  # Image height in pixels
+
+# Model configuration
+sam2_checkpoint: "/your/path/to/checkpoints/sam2.1_hiera_large.pt"  # Path to the SAM2 model checkpoint
+model_cfg: "//your/path/to/sam2/configs/sam2.1/sam2.1_hiera_l.yaml"  # Path to the SAM2 model configuration file
+
