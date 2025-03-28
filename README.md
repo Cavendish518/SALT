@@ -2,7 +2,7 @@
 <img src="fig/salt.png" width ="200" alt="celebration"/>
 
 
-# SALT: A Flexible Semi-Automatic Labeling Tool for General LiDAR Point Clouds with Adaptive Cross-Scene and 4D Consistency
+# SALT: A Flexible Semi-Automatic Labeling Tool for General LiDAR Point Clouds with Cross-Scene Adaptability and 4D Consistency
 
 
 This repo is the official project repository of SALT.
@@ -14,8 +14,62 @@ This repo is the official project repository of SALT.
 We introduce SALT, a flexible semi-automatic labeling tool for general LiDAR point clouds, featuring adaptive cross-scene and 4D consistency. 
 SALT demonstrates exceptional zero-shot adaptability across various sensors, scenes, and motion conditions, greatly enhancing annotation efficiency.
 
-## 2. Environment
+![image](fig/overview.jpg)
 
+## 2. Environment
+On Ubuntu 18.04, the dependencies can be installed from the package manager:
+```
+sudo apt-get install g++ build-essential libeigen3-dev python3-pip python3-dev cmake git  libboost-all-dev qtbase5-dev libglew-dev -y
+```
+Then, ensure [Anaconda](https://www.anaconda.com/download/) is installed on your system. Then, create and activate a virtual environment named `SALT`.
+
+```
+conda create -n SALT python==3.10
+conda activate SALT
+```
+`SALT` depends on [Patchwork++](https://github.com/url-kaist/patchwork-plusplus), a real-time ground segmentation library. Install it by running:
+```
+cd 3rdparty
+git clone https://github.com/url-kaist/patchwork-plusplus.git && cd patchwork-plusplus
+make pyinstall
+cd ..
+```
+[SAM 2](https://github.com/facebookresearch/sam2) is required for the segmentation module. The code requires  `torch>=2.5.1` and `torchvision>=0.20.1`. Please follow the instructions [here](https://pytorch.org/get-started/locally/) to install both PyTorch and TorchVision dependencies. You can install SAM 2 on a GPU machine using:
+```
+cd sam2
+pip install -e .
+cd checkpoints && ./download_ckpts.sh
+cd ../../..
+```
+or individually download `checkpoint` from [SAM 2](https://github.com/facebookresearch/sam2).
+
+Install `SALT` dependencies and download `Data Alignment Model`  checkpoints.
+
+```
+pip install -r requirements.txt
+cd ..
+```
+Meanwhile, please manually download the trained model from [Data_Alignment_Model](https://drive.google.com/file/d/1pnnW2JQsc8syDMyQiXGdBtSIjWlzfVjD/view?usp=sharing) and place it in the `~/SALT/SALT/` directory.
+
+The project folder structure should look like this:
+<pre>
+SALT folder
+├── 3rdparty
+├── SALT 
+   ├── best_model.pth    -- Data_Alignment_Model
+   ├── ...
+├── src   
+└── ...
+</pre>
+
+Install system-level dependencies and build the C++ backend of the labeler tool:
+
+```
+mkdir build && cd build
+cmake ..
+make -j5
+```
+Now the project root directory (e.g. `~/SALT`) should contain a `bin` directory containing the labeler.In the bin directory, just run `./SALT` to start the labeling tool.
 
 ## 3. User Manual 
 ### 3.1 Automatic Segmentation of Whole sequence
