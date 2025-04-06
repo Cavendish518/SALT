@@ -108,3 +108,11 @@ We would like to thank all the pioneers [SemanticKITTI_LABLER](https://github.co
 
 ## 6. Citation
 If your like our projects, please cite us and give this repo a star.
+```
+@article{wang2025salt,
+  title={SALT: A Flexible Semi-Automatic Labeling Tool for General LiDAR Point Clouds with Cross-Scene Adaptability and 4D Consistency},
+  author={Wang, Yanbo and Chen, Yongtao and Cao, Chuan and Deng, Tianchen and Zhao, Wentao and Wang, Jingchuan and Chen, Weidong},
+  journal={arXiv preprint arXiv:2503.23980},
+  year={2025}
+}
+```
