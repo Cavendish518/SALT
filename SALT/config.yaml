@@ -39,11 +39,11 @@ K: [[421.466, 0, 320],  # fx, 0, cx
     [0, 421.466, 240],  # 0, fy, cy
     [0, 0, 1]]  # 0, 0, 1 (intrinsics)
 rot: 0  # Pitch angle (α)
-tra: 2  # Upward axis
-start_rot: 0  # Initial rotation between baselink and lidarlink
-camera_angle_ud: 2.0  # Initial pitch angle (α)
+tra: 1  # Upward axis
+start_rot: -1.5707963267948966  # Initial rotation between baselink and lidarlink
+camera_angle_ud: 0.6  # Initial pitch angle (α)
 camera_angle_rl: 0  # determined by baselink
-camera_position: [[0.0, 0.0, 18]]  # Initial translation vector (t)
+camera_position: [[0.0, -30.0, 0.0]]  # Initial translation vector (t)
 width: 640  # Image width in pixels
 height: 480  # Image height in pixels
 
