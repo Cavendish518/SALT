@@ -15,6 +15,39 @@ SALT demonstrates exceptional zero-shot adaptability across various sensors, sce
 ![image](fig/overview.jpg)
 
 ## 2. Environment
+
+### 2.1 Docker-based
+This setup allows you to run `SALT` in an isolated and reproducible Docker container, without having to install dependencies manually.
+
+
+#### Step 1: Run the Container
+
+To run the container with access to your project files and enable GPU:
+
+```bash
+docker run -it \
+  --gpus all \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v ~/SALT:/workspace/SALT \
+  -w /workspace/SALT \
+  cytt/salt:latest /bin/bash
+```
+
+#### Step 2: Run SALT Inside Docker
+
+Once inside the container:
+
+```bash
+cd ~/SALT/bin
+./SALT
+```
+
+The GUI labeling tool should now launch inside Docker.
+
+---
+
+### 2.2 Non-Docker
 The dependencies can be installed from the package manager (tested On Ubuntu 18.04):
 ```
 sudo apt-get install g++ build-essential libeigen3-dev python3-pip \
@@ -102,6 +135,44 @@ Once users are satisfied with the semantic labeling results, they can simply cli
 
 ## 4. Quick Demo
 
+We provide a simple demo dataset to quickly test the functionality of `SALT`.
+
+You can download the demo data from [here](https://drive.google.com/file/d/1xNRPgNdNcdeueLMZurA4o1yjW_bQci8C/view?usp=drive_link).This is a sample subset from the [SemanticKITTI](https://www.semantic-kitti.org/).
+
+
+After downloading and extracting the data, you will find a `config.yaml` file inside the demo directory. You can use this configuration to quickly get started by simply updating a few path fields in the config file.
+
+### Step 1: Configure `config.yaml`
+
+Open the file at:
+
+```
+<SALT_path>/SALT/config.yaml
+```
+
+Update the following fields to point to your local environment:
+
+- `conda_sh_path`: Path to your `conda.sh`, e.g., `/home/user/anaconda3/etc/profile.d/conda.sh`
+- `data_dir`: Path to the demo data folder, e.g., `/home/user/demo_data`
+- `cache_dir`: Path to the cache output folder, e.g., `/home/user/demo_data/cache`
+- `sam2_checkpoint`: Path to the SAM2 checkpoint, e.g., `/home/user/SALT/3rdparty/sam2/checkpoints/sam2.1_hiera_large.pt`
+- `model_cfg`: Path to the SAM2 model configuration file, e.g., `//home/user/SALT/3rdparty/sam2/sam2/configs/sam2.1/sam2.1_hiera_l.yaml`
+- `Computing device configuration`: depends on the machine you are using.
+
+You can refer to the provided `config.yaml` as a template.
+
+### Step 2: Launch the GUI Tool
+
+Once your paths are configured, simply launch the GUI and click the **"SALT"** button in the top toolbar to start labeling.
+
+```bash
+cd bin
+./SALT
+```
+
+This will load the demo dataset using your customized `config.yaml` and bring up the annotation interface.
+
+Enjoy labeling!
 
 ## 5. Acknowledgements
 We would like to thank all the pioneers [SemanticKITTI_LABLER](https://github.com/jbehley/point_labeler), [SAM2](https://github.com/facebookresearch/sam2). 
