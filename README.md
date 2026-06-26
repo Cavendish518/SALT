@@ -12,8 +12,6 @@ This repo is the official project repository of **SALT**.
 We introduce SALT, a flexible semi-automatic labeling tool for general LiDAR point clouds, featuring adaptive cross-scene and 4D consistency. 
 SALT demonstrates exceptional zero-shot adaptability across various sensors, scenes, and motion conditions, greatly enhancing annotation efficiency.
 
-![image](fig/overview.jpg)
-
 ## 2. Environment
 
 ### 2.1 Docker-based
